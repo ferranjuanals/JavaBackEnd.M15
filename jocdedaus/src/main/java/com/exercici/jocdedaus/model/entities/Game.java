@@ -1,6 +1,4 @@
-package com.exercici.jocdedaus.entities;
-
-import java.math.BigInteger;
+package com.exercici.jocdedaus.model.entities;
 
 import javax.persistence.*;
 
@@ -10,11 +8,10 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Table(name="Games")
 @Document
 public class Game {
-
+	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "Id", unique = true, updatable = false, nullable = false)
-	private BigInteger id;
+	private String id;
 	
 	@Column(name = "Dice_1_Value", updatable = false, nullable = false)
 	private Integer dice1Value;
@@ -28,6 +25,14 @@ public class Game {
 	@JoinColumn(name = "Player")
 	@ManyToOne(optional = false, cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
 	private Player player;
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
 
 	public Integer getDice1Value() {
 		return dice1Value;
@@ -60,7 +65,4 @@ public class Game {
 	public void setPlayer(Player player) {
 		this.player = player;
 	}
-	
-	
-	
 }

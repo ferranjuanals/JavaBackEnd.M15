@@ -5,7 +5,7 @@ public class GameDto {
 	private Integer dice1Value;
 	private Integer dice2Value;
 	private String result;
-
+	
 	public Integer getDice1Value() {
 		return dice1Value;
 	}

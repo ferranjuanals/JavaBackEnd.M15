@@ -1,13 +1,12 @@
 package com.exercici.jocdedaus.repositories;
 
-import java.math.BigInteger;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
 
 import org.springframework.data.repository.NoRepositoryBean;
 
-import com.exercici.jocdedaus.entities.Player;
+import com.exercici.jocdedaus.model.entities.Player;
 
 @NoRepositoryBean
 public interface PlayerRepository {
@@ -16,7 +15,9 @@ public interface PlayerRepository {
 	
 	List<Player> findAll();
 	
-	Optional<Player> findById(BigInteger id);
+	Optional<Player> findById(String id);
+	
+	Optional<Player> findByName(String name);
 	
 	Stream<Player> findAllByOrderBySuccessPctDesc();
 
