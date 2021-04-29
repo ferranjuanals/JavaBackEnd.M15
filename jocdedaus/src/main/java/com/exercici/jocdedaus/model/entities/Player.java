@@ -1,6 +1,5 @@
-package com.exercici.jocdedaus.entities;
+package com.exercici.jocdedaus.model.entities;
 
-import java.math.BigInteger;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -10,17 +9,18 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Entity
 @Table(name = "Players")
-@Document
+@Document(collection = "players")
 public class Player {
 	
 	@Id
-	@SequenceGenerator(name = "playerSequence", sequenceName = "playerSequence", allocationSize = 1)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "playerSequence")
-	@Column(name = "Id", updatable = false, nullable = false)
-	private BigInteger id;
+	@Column(name = "Id", unique = true, updatable = false, nullable = false)
+	private String id;
 	
-	@Column(name = "Name")
+	@Column(name = "Name", unique = true, updatable = true, nullable = false)
 	private String name;
+	
+	@Column(name = "Anonymous", updatable = true, nullable = false)
+	private Boolean anonymous;
 	
 	@Column(name = "Success_Pct", nullable = false)
 	private Double successPct;
@@ -31,11 +31,11 @@ public class Player {
 	@OneToMany(mappedBy = "player")
 	private List<Game> games;
 
-	public BigInteger getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(BigInteger id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -45,6 +45,14 @@ public class Player {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public Boolean getAnonymous() {
+		return anonymous;
+	}
+
+	public void setAnonymous(Boolean anonymous) {
+		this.anonymous = anonymous;
 	}
 
 	public Double getSuccessPct() {
@@ -62,7 +70,5 @@ public class Player {
 	public void setRegistrationDate(LocalDate registrationDate) {
 		this.registrationDate = registrationDate;
 	}
-	
-	
 	
 }

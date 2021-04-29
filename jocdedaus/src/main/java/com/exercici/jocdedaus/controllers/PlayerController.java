@@ -1,6 +1,5 @@
 package com.exercici.jocdedaus.controllers;
 
-import java.math.BigInteger;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,25 +31,25 @@ public class PlayerController {
 	
 	@PutMapping("/{id}")
 	@ResponseStatus(HttpStatus.OK)
-	public void editPlayer(@PathVariable("id") BigInteger playerId, @RequestBody PlayerDto newName) {
+	public void editPlayer(@PathVariable("id") String playerId, @RequestBody PlayerDto newName) {
 		playerService.editPlayerName(playerId, newName);
 	}
 	
 	@PostMapping("/{id}/games")
 	@ResponseStatus(HttpStatus.CREATED)
-	public GameDto addGameToPlayer(@PathVariable("id") BigInteger playerId) {
+	public GameDto addGameToPlayer(@PathVariable("id") String playerId) {
 		return playerService.addGameToPlayer(playerId);
 	}
 	
 	@GetMapping("/{id}/games")
 	@ResponseStatus(HttpStatus.OK)
-	public List<GameDto> getGamesByPlayer(@PathVariable("id") BigInteger playerId) {
+	public List<GameDto> getGamesByPlayer(@PathVariable("id") String playerId) {
 		return playerService.getGamesByPlayer(playerId);
 	}
 	
 	@DeleteMapping("/{id}/games")
 	@ResponseStatus(HttpStatus.ACCEPTED)
-	public void deleteAllGamesByPlayer(@PathVariable("id") BigInteger playerId) {
+	public void deleteAllGamesByPlayer(@PathVariable("id") String playerId) {
 		playerService.deleteAllGamesByPlayer(playerId);
 	}
 	

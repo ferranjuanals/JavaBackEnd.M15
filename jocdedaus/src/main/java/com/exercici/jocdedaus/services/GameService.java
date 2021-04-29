@@ -9,8 +9,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.exercici.jocdedaus.dtos.GameDto;
-import com.exercici.jocdedaus.entities.Game;
-import com.exercici.jocdedaus.entities.Player;
+import com.exercici.jocdedaus.model.entities.Game;
+import com.exercici.jocdedaus.model.entities.Player;
+import com.exercici.jocdedaus.model.valueobjects.CustomId;
 import com.exercici.jocdedaus.repositories.GameRepository;
 
 @Service
@@ -47,6 +48,7 @@ public class GameService {
 	// Create a Game and set the dice values
 	private Game game(Player player) {
 		Game game = new Game();
+		game.setId(CustomId.newId().toString());
 		Integer dice1 = rollDice();
 		Integer dice2 = rollDice();
 		game.setPlayer(player);

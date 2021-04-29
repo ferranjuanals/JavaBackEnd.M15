@@ -1,7 +1,5 @@
 package com.exercici.jocdedaus.exceptions;
 
-import java.math.BigInteger;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
@@ -10,7 +8,7 @@ public class IdNotFoundException extends RuntimeException{
 
 	private static final long serialVersionUID = 1L;
 	
-	public IdNotFoundException(BigInteger id) {
+	public IdNotFoundException(String id) {
 		super("ID: " + id + " not found");
 	}
 
